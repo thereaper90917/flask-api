@@ -1,0 +1,4 @@
+author
+image
+description
+date_created
