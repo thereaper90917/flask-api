@@ -14,10 +14,11 @@ manager = APIManager(app,flask_sqlalchemy_db=db)
 
 class Dev(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(80),nullable=False)
+    username = db.Column(db.String(80),nullable=False)
     description = db.Column(db.String(255),nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
     created_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
+    visible_datetime = db.Column(db.String(120),nullable=False, default=datetime.utcnow().strftime('%B %d %Y - %H:%M:%S'))
 
 
 manager.create_api(Dev, methods=['GET', 'POST'])
