@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restless import APIManager
 from flask_cors import CORS
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -16,14 +17,10 @@ class Dev(db.Model):
     author = db.Column(db.String(80),nullable=False)
     description = db.Column(db.String(255),nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(80),nullable=False)
+    created_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
 
 
 manager.create_api(Dev, methods=['GET', 'POST'])
-manager.create_api(User, methods=['GET'])
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
