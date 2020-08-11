@@ -2,3 +2,4 @@ Flask
 flask-restless
 flask-sqlalchemy
 uwsgi
+flask-cors
